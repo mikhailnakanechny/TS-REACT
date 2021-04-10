@@ -18,3 +18,38 @@ main {
   justify-content: center;
   align-items: center;
 }
+
+
+
+.sort-field {
+  position: relative;
+  display: flex;
+  height: 510px;
+}
+
+.sort-field::before {
+  content: '';
+  position: absolute;
+  height: 30px;
+  width: 100%;
+  margin-top: -30px;
+  background-color: white;
+}
+
+.column-value {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 30px;
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  border-bottom: 1px solid bisque;
+
+}
+
+.column-text {
+  padding-left: 15px;
+  color: red;
+  font-weight: 600;
+  transform: rotate(-90deg);
+}

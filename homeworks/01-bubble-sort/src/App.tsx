@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <h1>Bubble sort visualization</h1>
       </header>
-      <main>
+      <main className="App-main">
         <SortField />
       </main>
     </div>
