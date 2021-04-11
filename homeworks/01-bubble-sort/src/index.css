@@ -33,9 +33,9 @@ main {
 .sort-field::before {
   content: '';
   position: absolute;
-  height: 30px;
+  height: 40px;
   width: 100%;
-  margin-top: -30px;
+  margin-bottom: -41px;
   background-color: white;
 }
 
@@ -44,21 +44,20 @@ main {
   flex-direction: column-reverse;
   width: 30px;
   background-color: white;
-  border-radius: 0 0 5px 5px;
-  border-top: none;
-  border-bottom: 1px solid bisque;
-
+  border-radius: 10px 10px 0 0;  
+  border-top: 1px solid bisque;
+  border-bottom: none;
 }
 
 .column-text {
-  padding-left: 15px;
+  margin-bottom: -30px;
   color: red;
   font-weight: 600;
   transform: rotate(-90deg);
 }
 
 .buttons-row {
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 .btn-main{
@@ -70,5 +69,6 @@ main {
 }
 
 .status-row {
+  margin-top: 50px;
   color: white;
 }

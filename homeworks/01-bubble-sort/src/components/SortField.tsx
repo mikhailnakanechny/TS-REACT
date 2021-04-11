@@ -1,6 +1,5 @@
 import React from 'react';
 import { randomNum, randomArray } from './Helpers';
-import { bubbleSort } from './SortFunc';
 
 interface SortFieldProps { }
 
@@ -9,51 +8,49 @@ interface SortFieldState {
     isSorted: string,
 }
 
-// type StepParams = [number[], number]
+type StepParams = [number[], boolean]
 
 const MAX_ARR_LENGTH = 20;
 const MIN_ARR_LENGTH = 10;
 const MAX_ARR_VALUE = 500;
-
 export class SortField extends React.Component<SortFieldProps, SortFieldState> {
 
     constructor(props: SortFieldProps) {
         super(props);
-        this.state = { drawArr: randomArray(randomNum(MAX_ARR_LENGTH, MIN_ARR_LENGTH), MAX_ARR_VALUE), isSorted: 'Not sorted' }
+        this.state = {
+            drawArr: randomArray(randomNum(MAX_ARR_LENGTH, MIN_ARR_LENGTH), MAX_ARR_VALUE),
+            isSorted: 'Not started'
+        }
         this.onGenerateArr = this.onGenerateArr.bind(this);
         this.onStartSorting = this.onStartSorting.bind(this);
-        this.bubbleStep = this.bubbleStep.bind(this);
     }
 
     onGenerateArr() {
         this.setState({ drawArr: randomArray(randomNum(MAX_ARR_LENGTH, MIN_ARR_LENGTH), MAX_ARR_VALUE) });
+        this.setState({ isSorted: 'Not started' })
     }
-
-    // onStartSorting() {
-    //     const arr: number[] = [...this.state.drawArr];
-    //     this.setState({ drawArr: bubbleSort(arr) })
-    // }
 
     onStartSorting() {
         const arr: number[] = [...this.state.drawArr];
         this.bubbleSort(arr);
+        this.setState({ isSorted: 'Sorting' })
     }
 
-    bubbleStep(arr: number[], j: number, isSwapped: boolean) {
+    async delay(ms: number = 100) {
+        return await new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    bubbleStep(arr: number[], j: number, isSwapped: boolean): StepParams {
         if (arr[j] > arr[j + 1]) {
             var temp = arr[j]
             arr[j] = arr[j + 1];
             arr[j + 1] = temp;
             isSwapped = true;
             this.setState({ drawArr: arr })
-            console.log(j + ' - ' + isSwapped + ' - ' + arr)
+            // console.log(j + ' - ' + isSwapped + ' - ' + arr)
         }
-        return arr;
-    }
-
-    async delay(ms: number = 1000) {
-        return await new Promise(resolve => setTimeout(resolve, ms));
-    }
+        return [arr, isSwapped];
+    }    
 
     async bubbleSort(arr: number[]) {
         const len: number = arr.length;
@@ -61,12 +58,17 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
         for (let i = 0; i < len; i++) {
             isSwapped = false;
             for (let j = 0; j < len; j++) {
-                // await setInterval(this.bubbleStep.bind(this, arr, j , isSwapped), 3000);
-                await this.delay(100);
-                arr = this.bubbleStep(arr, j, isSwapped);
+                await this.delay();
+                const stepResult: StepParams = this.bubbleStep(arr, j, isSwapped);
+                arr = stepResult[0];
+                isSwapped = stepResult[1];
+            }
+            if (!isSwapped) {
+                this.setState({ isSorted: 'Sorted!' })
+                break;
             }
         }
-        console.log(arr)
+        // console.log(arr)
     }
 
     render() {
@@ -79,13 +81,13 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
                 ))
                 }
             </div>
-            <div className="buttons-row">
-                <button className="btn-main" onClick={this.onGenerateArr}>Generate</button>
-                <button className="btn-main" onClick={this.onStartSorting}>Bubble It!</button>
-            </div>
             <div className="status-row">
                 {this.state.isSorted}
             </div>
+            <div className="buttons-row">
+                <button className="btn-main" onClick={this.onGenerateArr}>Generate</button>
+                <button className="btn-main" onClick={this.onStartSorting}>Bubble It!</button>
+            </div>            
         </div>;
     }
 }
