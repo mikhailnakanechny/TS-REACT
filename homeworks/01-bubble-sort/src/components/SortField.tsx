@@ -3,14 +3,14 @@ import { randomNum, randomArray, delay } from './Helpers';
 import Button from './Button';
 import Column from './Column';
 
-interface SortFieldProps { }
+interface SortFieldProps { };
 
 interface SortFieldState {
     drawArr: number[],
     isSorted: string,
-}
+};
 
-type StepParams = [number[], boolean]
+type StepParams = [number[], boolean];
 
 const MAX_ARR_LENGTH = 15;
 const MIN_ARR_LENGTH = 10;
@@ -29,13 +29,13 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
 
     onGenerateArr() {
         this.setState({ drawArr: randomArray(randomNum(MAX_ARR_LENGTH, MIN_ARR_LENGTH), MAX_ARR_VALUE) });
-        this.setState({ isSorted: 'Not started' })
+        this.setState({ isSorted: 'Not started' });
     }
 
     onStartSorting() {
         const arr: number[] = [...this.state.drawArr];
         this.bubbleSort(arr);
-        this.setState({ isSorted: 'Sorting' })
+        this.setState({ isSorted: 'Sorting' });
     }
 
     bubbleStep(arr: number[], j: number, isSwapped: boolean): StepParams {
@@ -44,8 +44,7 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
             arr[j] = arr[j + 1];
             arr[j + 1] = temp;
             isSwapped = true;
-            this.setState({ drawArr: arr })
-            // console.log(j + ' - ' + isSwapped + ' - ' + arr)
+            this.setState({ drawArr: arr });
         }
         return [arr, isSwapped];
     }
@@ -62,28 +61,29 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
                 isSwapped = stepResult[1];
             }
             if (!isSwapped) {
-                this.setState({ isSorted: 'Sorted!' })
-                break;
+                this.setState({ isSorted: 'Sorted!' });
+                break
             }
         }
-        // console.log(arr)
     }
 
     render() {
-        return <div className="field-container">
-            <div className="sort-field">
-                {this.state.drawArr.map((el, id) => (
-                    <Column el={el} id={id} />
-                ))
-                }
+        return (
+            <div className="field-container">
+                <div className="sort-field">
+                    {this.state.drawArr.map((el, id) => (
+                        <Column el={el} id={id} />
+                    ))
+                    }
+                </div>
+                <div className="status-row">
+                    {this.state.isSorted}
+                </div>
+                <div className="buttons-row">
+                    <Button elemClass="btn-main" message="Generate" onClick={this.onGenerateArr} />
+                    <Button elemClass="btn-main" message="Sort It!" onClick={this.onStartSorting} />
+                </div>
             </div>
-            <div className="status-row">
-                {this.state.isSorted}
-            </div>
-            <div className="buttons-row">
-                <Button className="btn-main" message="Generate" onClick={this.onGenerateArr} />
-                <Button className="btn-main" message="Sort It!" onClick={this.onStartSorting} />
-            </div>
-        </div>;
+        );
     }
 }

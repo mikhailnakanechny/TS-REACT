@@ -4,7 +4,7 @@ export type ColumnProps = {
 };
 
 export default function Column(props: ColumnProps) {
-    const {el, id} = props
+    const {el, id} = props;
     return (
         <div className="column-value" style={{ height: el }} key={id}>
             <span className="column-text" >{el}</span>
