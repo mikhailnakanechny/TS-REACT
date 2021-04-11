@@ -1,3 +1,7 @@
+:root {
+  --main-color: #282c34;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #282c34;
+  background-color: var(--main-color);
 }
 
 code {
@@ -19,11 +23,10 @@ main {
   align-items: center;
 }
 
-
-
 .sort-field {
   position: relative;
   display: flex;
+  flex-flow: wrap-reverse;
   height: 510px;
 }
 
@@ -52,4 +55,20 @@ main {
   color: red;
   font-weight: 600;
   transform: rotate(-90deg);
+}
+
+.buttons-row {
+  margin-top: 100px;
+}
+
+.btn-main{
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  color: var(--main-color);  
+  font-weight: 600;
+}
+
+.status-row {
+  color: white;
 }
