@@ -10,7 +10,7 @@ interface SortFieldState {
 
 type StepParams = [number[], boolean]
 
-const MAX_ARR_LENGTH = 20;
+const MAX_ARR_LENGTH = 15;
 const MIN_ARR_LENGTH = 10;
 const MAX_ARR_VALUE = 500;
 export class SortField extends React.Component<SortFieldProps, SortFieldState> {
@@ -42,7 +42,7 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
 
     bubbleStep(arr: number[], j: number, isSwapped: boolean): StepParams {
         if (arr[j] > arr[j + 1]) {
-            var temp = arr[j]
+            let temp = arr[j]
             arr[j] = arr[j + 1];
             arr[j + 1] = temp;
             isSwapped = true;
