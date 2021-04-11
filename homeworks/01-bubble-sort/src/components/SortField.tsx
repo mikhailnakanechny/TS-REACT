@@ -1,6 +1,7 @@
 import React from 'react';
 import { randomNum, randomArray, delay } from './Helpers';
-import Button from './Button'
+import Button from './Button';
+import Column from './Column';
 
 interface SortFieldProps { }
 
@@ -72,9 +73,7 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
         return <div className="field-container">
             <div className="sort-field">
                 {this.state.drawArr.map((el, id) => (
-                    <div className="column-value" style={{ height: el }} key={id}>
-                        <span className="column-text" >{el}</span>
-                    </div>
+                    <Column el={el} id={id} />
                 ))
                 }
             </div>
