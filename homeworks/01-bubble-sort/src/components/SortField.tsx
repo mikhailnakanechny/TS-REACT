@@ -1,5 +1,6 @@
 import React from 'react';
-import { randomNum, randomArray } from './Helpers';
+import { randomNum, randomArray, delay } from './Helpers';
+import Button from './Button'
 
 interface SortFieldProps { }
 
@@ -36,13 +37,9 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
         this.setState({ isSorted: 'Sorting' })
     }
 
-    async delay(ms: number = 100) {
-        return await new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     bubbleStep(arr: number[], j: number, isSwapped: boolean): StepParams {
         if (arr[j] > arr[j + 1]) {
-            let temp = arr[j]
+            let temp: number = arr[j];
             arr[j] = arr[j + 1];
             arr[j + 1] = temp;
             isSwapped = true;
@@ -50,7 +47,7 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
             // console.log(j + ' - ' + isSwapped + ' - ' + arr)
         }
         return [arr, isSwapped];
-    }    
+    }
 
     async bubbleSort(arr: number[]) {
         const len: number = arr.length;
@@ -58,7 +55,7 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
         for (let i = 0; i < len; i++) {
             isSwapped = false;
             for (let j = 0; j < len; j++) {
-                await this.delay();
+                await delay();
                 const stepResult: StepParams = this.bubbleStep(arr, j, isSwapped);
                 arr = stepResult[0];
                 isSwapped = stepResult[1];
@@ -85,9 +82,9 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
                 {this.state.isSorted}
             </div>
             <div className="buttons-row">
-                <button className="btn-main" onClick={this.onGenerateArr}>Generate</button>
-                <button className="btn-main" onClick={this.onStartSorting}>Bubble It!</button>
-            </div>            
+                <Button className="btn-main" message="Generate" onClick={this.onGenerateArr} />
+                <Button className="btn-main" message="Sort It!" onClick={this.onStartSorting} />
+            </div>
         </div>;
     }
 }
