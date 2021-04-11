@@ -32,10 +32,13 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
         this.setState({ isSorted: 'Not started' });
     }
 
-    onStartSorting() {
+    async onStartSorting() {
         const arr: number[] = [...this.state.drawArr];
-        this.bubbleSort(arr);
-        this.setState({ isSorted: 'Sorting' });
+        if (this.state.isSorted === 'Sorting' || this.state.isSorted === 'Sorted!') {
+            return;
+        }
+        await this.setState({ isSorted: 'Sorting' },);
+        this.bubbleSort(arr);        
     }
 
     bubbleStep(arr: number[], j: number, isSwapped: boolean): StepParams {
@@ -56,6 +59,9 @@ export class SortField extends React.Component<SortFieldProps, SortFieldState> {
             isSwapped = false;
             for (let j = 0; j < len; j++) {
                 await delay();
+                if (this.state.isSorted !== 'Sorting') {
+                    return;
+                }
                 const stepResult: StepParams = this.bubbleStep(arr, j, isSwapped);
                 arr = stepResult[0];
                 isSwapped = stepResult[1];
