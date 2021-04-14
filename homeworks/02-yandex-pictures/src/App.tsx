@@ -1,29 +1,18 @@
 import React from 'react';
 import './App.css';
-
-// https://dog.ceo/api/breed/corgi-cardigan/images
-// https://images.dog.ceo/breeds/corgi-cardigan
-
-fetch("https://dog.ceo/api/breed/corgi/cardigan/images")
-  .then(response => {
-    console.log(response);
-    // console.log(response.json());
-  })
-  .catch(err => {
-    console.error(err);
-  });
+import PictureField from './components/PictureField'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
+        <h1>
           Yandex-like layout
-        </p>
+        </h1>
       </header>
       <main>
         <div className="demo-image">
-          <img src="https://images.dog.ceo/breeds/corgi-cardigan/n02113186_8794.jpg"/>            
+          <PictureField />
         </div>
       </main>
     </div>
