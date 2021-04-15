@@ -19,12 +19,24 @@
   color: white;
 }
 
-.field-container{
+.field-container {
   display: grid;
-  grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fit, 200px);
   grid-auto-flow: dense;
+  grid-gap: 1rem;
+}
+
+.image-wrapper {
+  max-height: 200px;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5%;
 }
 
 .image-cell {
-  max-height: 200px;
+  height: 100%;
+  overflow: hidden;
 }
