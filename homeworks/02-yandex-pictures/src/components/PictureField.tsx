@@ -44,8 +44,10 @@ export default class PictureField extends React.Component<PictureFieldProps, Pic
             <div className="field-container">
                 {pictureArray.map((element, id) => {
                     return (
-                        <div className="image-wrapper">
-                            <img className="image-cell" key={id} src={element} alt={`corgi-${id}`} />
+                        <div className="image-wrapper" key={`wrap-${id}`}>
+                            <div className="image-cell" key={`cell-${id}`}>
+                                <img className="image" key={`corgi-${id}`} src={element} alt={`corgi-${id}`} />
+                            </div>
                         </div>
                     )
                 })}
