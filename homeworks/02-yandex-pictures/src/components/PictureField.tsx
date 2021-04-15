@@ -54,17 +54,17 @@ export default class PictureField extends React.Component<PictureFieldProps, Pic
         return (
             <div className="field-container">
                 {pictureArray.map((image, id) => {
-                    const outerDivStyle = {width: '200px', flexGrow: 1};
-                    const innerDivStyle = {paddingBottom: '0'};
-                    if (!!arr[id]?.width && !!arr[id]?.height) {
-                        outerDivStyle.width = (arr[id].width * 200) / arr[id].height + "px";
-                        outerDivStyle.flexGrow = (arr[id].width * 200) / arr[id].height;
-                        innerDivStyle.paddingBottom = (arr[id].height / arr[id].width) * 100 + "%";
-                    }
+                    // const outerDivStyle = {width: '200px', flexGrow: 1};
+                    // const innerDivStyle = {paddingBottom: '0'};
+                    // if (!!arr[id]?.width && !!arr[id]?.height) {
+                    //     outerDivStyle.width = (arr[id].width * 200) / arr[id].height + "px";
+                    //     outerDivStyle.flexGrow = (arr[id].width * 200) / arr[id].height;
+                    //     innerDivStyle.paddingBottom = (arr[id].height / arr[id].width) * 100 + "%";
+                    // }
                     return (
-                        <div className="image-wrapper" key={`wrap-${id}`} style={outerDivStyle}>
-                        {/* <div className="image-wrapper" key={`wrap-${id}`}> */}
-                            <div style={innerDivStyle}></div>
+                        // <div className="image-wrapper" key={`wrap-${id}`} style={outerDivStyle}>
+                        <div className="image-wrapper" key={`wrap-${id}`}>
+                            {/* <div style={innerDivStyle}></div> */}
                             <img className="image" key={`corgi-${id}`} src={image} alt={`corgi-${id}`} onLoad={this.onImgLoad} />
                         </div>
                     )
