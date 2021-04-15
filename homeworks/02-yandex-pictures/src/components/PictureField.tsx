@@ -7,9 +7,9 @@ interface PictureFieldState {
 };
 type PictureArray = string[];
 
-const MAX_ARR_LENGTH = 30;
+const MAX_ARR_LENGTH = 50;
 const MIN_ARR_LENGTH = 30;
-const MAX_ARR_VALUE = 100;
+const MAX_ARR_VALUE = 150;
 const URL_CORGI: string = "https://dog.ceo/api/breed/corgi/cardigan/images";
 
 async function getImagesList() {
@@ -31,7 +31,6 @@ export default class PictureField extends React.Component<PictureFieldProps, Pic
             pictureArray: ['']
         }
     }
-
 
     componentDidMount() {
         getImagesList().then(result => this.setState({ pictureArray: result }))
