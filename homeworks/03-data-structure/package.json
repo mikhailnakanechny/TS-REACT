@@ -1,7 +1,7 @@
 {
-  "name": "basic-unit-tests",
+  "name": "03-data-structure",
   "version": "0.0.1",
-  "description": "05. Basic Unit Tests Lesson.",
+  "description": "03-data-structure",
   "license": "MIT",
   "scripts": {
     "test": "jest",
