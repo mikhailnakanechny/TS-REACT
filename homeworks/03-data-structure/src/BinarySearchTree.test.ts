@@ -35,31 +35,31 @@ describe('BinarySearchTree tests', () => {
     const tree = new BinarySearchTree(treeObject);
 
     it("column 0", () => {
-      expect(tree.getColumn(0)).toEqual([10, 7, 11])
+      expect(tree.getColumn(0)).toEqual([10, 7, 11]);
     });
 
     it("column -1", () => {
-      expect(tree.getColumn(-1)).toEqual([8])
+      expect(tree.getColumn(-1)).toEqual([8]);
     });
 
     it("column -2", () => {
-      expect(tree.getColumn(-2)).toEqual([6])
+      expect(tree.getColumn(-2)).toEqual([6]);
     });
 
     it("column -3", () => {
-      expect(tree.getColumn(-3)).toEqual([4])
+      expect(tree.getColumn(-3)).toEqual([4]);
     });
 
     it("column 1", () => {
-      expect(tree.getColumn(1)).toEqual([12])
+      expect(tree.getColumn(1)).toEqual([12]);
     });
 
     it("column 2", () => {
-      expect(tree.getColumn(2)).toEqual([14])
+      expect(tree.getColumn(2)).toEqual([14]);
     });
 
     it("column 3", () => {
-      expect(tree.getColumn(3)).toEqual([16])
+      expect(tree.getColumn(3)).toEqual([16]);
     });
   })
 

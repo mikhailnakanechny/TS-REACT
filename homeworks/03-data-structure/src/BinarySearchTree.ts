@@ -1,7 +1,7 @@
 import { BinaryTree, TreeNode, IBinaryTree } from "./BinaryTree"
 
 export interface IBinarySearchTree extends IBinaryTree<number> {
-  has(value: number): boolean
+  has(value: number): boolean;
 }
 
 export class BinarySearchTree extends BinaryTree<number> implements IBinarySearchTree {

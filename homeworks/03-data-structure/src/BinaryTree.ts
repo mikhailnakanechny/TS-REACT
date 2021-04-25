@@ -54,7 +54,7 @@ export class BinaryTree<T> implements IBinaryTree<T> {
         recursiveColumn(treeNode.right, currentColumn + 1);
       }
     }
-    recursiveColumn(this.tree, 0)
+    recursiveColumn(this.tree, 0);
     return columnOrderResult;
   }
 
@@ -81,7 +81,7 @@ export class BinaryTree<T> implements IBinaryTree<T> {
     const BFTResult: T[] = [];
     const queue: TreeNode<T>[] = [];
     let current: TreeNode<T> = this.tree;
-    queue.push(treeNode)
+    queue.push(treeNode);
     while (queue.length) {
       current = queue.shift() as TreeNode<T>;
       BFTResult.push(current.value);
