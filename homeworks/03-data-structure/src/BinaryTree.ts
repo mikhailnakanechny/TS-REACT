@@ -5,10 +5,10 @@ export interface TreeNode<T> {
 }
 
 export enum TraverseType {
+  Breadth,
   Inorder,
   Preorder,
   Postorder,
-  Breadth
 }
 
 export interface IBinaryTree<T> {
@@ -64,6 +64,15 @@ export class BinaryTree<T> implements IBinaryTree<T> {
       case TraverseType.Breadth:
         traverseResult = this.BFT(this.tree);
         break;
+      case TraverseType.Inorder:
+        traverseResult = this.DFTInorder(this.tree);
+        break;
+      case TraverseType.Preorder:
+        traverseResult = this.DFTPreorder(this.tree);
+        break;
+      case TraverseType.Postorder:
+        traverseResult = this.DFTPostorder(this.tree);
+        break;
     }
     return traverseResult;
   }
@@ -83,5 +92,38 @@ export class BinaryTree<T> implements IBinaryTree<T> {
       }
     }
     return BFTResult;
+  }
+
+  private DFTInorder(treeNode: TreeNode<T>): T[] {
+    const inorderResult: T[] = [];
+    let traverse = (node: TreeNode<T>) => {
+      if (node.left) traverse(node.left);
+      inorderResult.push(node.value);
+      if (node.right) traverse(node.right);
+    };
+    traverse(treeNode);
+    return inorderResult;
+  }
+
+  private DFTPreorder(treeNode: TreeNode<T>): T[] {
+    const preorderResult: T[] = [];
+    let traverse = (node: TreeNode<T>) => {
+      preorderResult.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    };
+    traverse(treeNode);
+    return preorderResult;
+  }
+
+  private DFTPostorder(treeNode: TreeNode<T>): T[] {
+    const postorderResult: T[] = [];
+    let traverse = (node: TreeNode<T>) => {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      postorderResult.push(node.value);
+    };
+    traverse(treeNode);
+    return postorderResult;
   }
 }
