@@ -1,5 +1,27 @@
 # Data Structure
 
+Report:
+
+$ jest --coverage
+ PASS  src/BinaryTree.test.ts
+ PASS  src/mergeSort.test.ts
+ PASS  src/BinarySearchTree.test.ts
+---------------------|---------|----------|---------|---------|-------------------
+File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+---------------------|---------|----------|---------|---------|-------------------
+All files            |     100 |    97.83 |     100 |     100 | 
+ BinarySearchTree.ts |     100 |      100 |     100 |     100 | 
+ BinaryTree.ts       |     100 |    97.06 |     100 |     100 | 29
+ mergeSort.ts        |     100 |      100 |     100 |     100 | 
+---------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 3 passed, 3 total
+Tests:       35 passed, 35 total
+Snapshots:   0 total
+Time:        2.077 s
+Ran all test suites.
+Done in 3.30s.
+
 **Deadline: 25.04.2021 23:59 Minsk**
 
 ## Task description

@@ -4,8 +4,8 @@
   "description": "03-data-structure",
   "license": "MIT",
   "scripts": {
-    "test": "jest --verbose false",
-    "test:watch": "jest --watch-all --coverage --watch --verbose false"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch-all --coverage"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
