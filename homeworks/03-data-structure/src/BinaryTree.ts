@@ -15,7 +15,7 @@ export interface IBinaryTree<T> {
   // constructor(tree: TreeNode<T>): void;
   setTree(tree: TreeNode<T>): this;
   // traverse(traverseType: TraverseType): T[];
-  // getColumn(columnOrder: number): T[];
+  getColumn(columnOrder: number): T[];
 }
 
 export class BinaryTree<T> implements IBinaryTree<T> {
@@ -24,9 +24,6 @@ export class BinaryTree<T> implements IBinaryTree<T> {
   constructor(tree: TreeNode<T>) {
     this.tree = tree;
   }
-  // constructor(tree: TreeNode<T>): void {
-  //   throw new Error("Method not implemented.");
-  // }
 
   get value() {
     return this.tree.value || undefined
@@ -39,16 +36,25 @@ export class BinaryTree<T> implements IBinaryTree<T> {
     return this.tree.right || undefined
   }
 
-  // constructor(tree: TreeNode<T>): void {
-  //   throw new Error("Method not implemented.");
-  // }
-
   setTree(tree: TreeNode<T>): this {
     this.tree = tree;
     return this;
   }
 
-  // getColumn(columnOrder: number): T[] {
-  //   this.fillColumns(0);
-  // }
+  getColumn(columnOrder: number): T[] {
+    const columnOrderResult: T[] = []
+    function recursiveColumn(treeNode: TreeNode<T>, currentColumn: number) {
+      if (currentColumn === columnOrder) {
+        columnOrderResult.push(treeNode.value)
+      }
+      if (treeNode.left) {
+        recursiveColumn(treeNode.left, currentColumn - 1)
+      }
+      if (treeNode.right) {
+        recursiveColumn(treeNode.right, currentColumn + 1)
+      }
+    }
+    recursiveColumn(this.tree, 0)
+    return columnOrderResult
+  }
 }
