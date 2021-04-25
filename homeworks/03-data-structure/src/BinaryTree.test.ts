@@ -1,6 +1,12 @@
-import { BinaryTree } from "./BinaryTree"
+import { BinaryTree, TraverseType } from "./BinaryTree"
 
 describe('BinaryTree tests', () => {
+  const treeObject = {
+    value: 10,
+    left: { value: 8, left: { value: 6, left: { value: 4 } }, right: { value: 7 } },
+    right: { value: 12, left: { value: 11 }, right: { value: 14, right: { value: 16 } } }
+  };
+
   it('only root value', () => {
     const tree = new BinaryTree({ value: 10 });
     expect(tree.value).toEqual(10);
@@ -23,11 +29,6 @@ describe('BinaryTree tests', () => {
   });
 
   describe("getColumn method", () => {
-    const treeObject = {
-      value: 10,
-      left: { value: 8, left: { value: 6, left: { value: 4 }}, right: { value: 7 } },
-      right: { value: 12, left: { value: 11 }, right: { value: 14 , right: { value: 16 } } }
-    };
     const tree = new BinaryTree(treeObject);
 
     it("column 0", () => {
@@ -58,4 +59,12 @@ describe('BinaryTree tests', () => {
       expect(tree.getColumn(3)).toEqual([16])
     })
   })
+
+  describe("traverse method", () => {
+    const tree = new BinaryTree(treeObject);
+
+    it("Breadth-First traverse", () => {
+      expect(tree.traverse(TraverseType.Breadth)).toEqual([10, 8, 12, 6, 7, 11, 14, 4, 16])
+    })
+  });
 });

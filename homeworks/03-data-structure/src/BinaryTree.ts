@@ -14,7 +14,7 @@ export enum TraverseType {
 export interface IBinaryTree<T> {
   // constructor(tree: TreeNode<T>): void;
   setTree(tree: TreeNode<T>): this;
-  // traverse(traverseType: TraverseType): T[];
+  traverse(traverseType: TraverseType): T[];
   getColumn(columnOrder: number): T[];
 }
 
@@ -26,14 +26,14 @@ export class BinaryTree<T> implements IBinaryTree<T> {
   }
 
   get value() {
-    return this.tree.value || undefined
+    return this.tree.value || undefined;
   }
 
   get left() {
-    return this.tree.left || undefined
+    return this.tree.left || undefined;
   }
   get right() {
-    return this.tree.right || undefined
+    return this.tree.right || undefined;
   }
 
   setTree(tree: TreeNode<T>): this {
@@ -42,19 +42,46 @@ export class BinaryTree<T> implements IBinaryTree<T> {
   }
 
   getColumn(columnOrder: number): T[] {
-    const columnOrderResult: T[] = []
+    const columnOrderResult: T[] = [];
     function recursiveColumn(treeNode: TreeNode<T>, currentColumn: number) {
       if (currentColumn === columnOrder) {
-        columnOrderResult.push(treeNode.value)
+        columnOrderResult.push(treeNode.value);
       }
       if (treeNode.left) {
-        recursiveColumn(treeNode.left, currentColumn - 1)
+        recursiveColumn(treeNode.left, currentColumn - 1);
       }
       if (treeNode.right) {
-        recursiveColumn(treeNode.right, currentColumn + 1)
+        recursiveColumn(treeNode.right, currentColumn + 1);
       }
     }
     recursiveColumn(this.tree, 0)
-    return columnOrderResult
+    return columnOrderResult;
+  }
+
+  traverse(traverseType: TraverseType): T[] {
+    let traverseResult: T[] = [];
+    switch (traverseType) {
+      case TraverseType.Breadth:
+        traverseResult = this.BFT(this.tree);
+        break;
+    }
+    return traverseResult;
+  }
+
+  private BFT(treeNode: TreeNode<T>): T[] {
+    const BFTResult: T[] = [];
+    const queue: Array<TreeNode<T>> = [];
+    queue.push(treeNode)
+    while (queue.length > 0) {
+      const currentNode = queue.shift() as TreeNode<T>;
+      BFTResult.push(currentNode.value);
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+    return BFTResult;
   }
 }
