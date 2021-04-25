@@ -79,18 +79,15 @@ export class BinaryTree<T> implements IBinaryTree<T> {
 
   private BFT(treeNode: TreeNode<T>): T[] {
     const BFTResult: T[] = [];
-    const queue: Array<TreeNode<T>> = [];
+    const queue: TreeNode<T>[] = [];
+    let current: TreeNode<T> = this.tree;
     queue.push(treeNode)
-    while (queue.length > 0) {
-      const currentNode = queue.shift() as TreeNode<T>;
-      BFTResult.push(currentNode.value);
-      if (currentNode.left) {
-        queue.push(currentNode.left);
-      }
-      if (currentNode.right) {
-        queue.push(currentNode.right);
-      }
-    }
+    while (queue.length) {
+      current = queue.shift() as TreeNode<T>;
+      BFTResult.push(current.value);
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+    };
     return BFTResult;
   }
 
