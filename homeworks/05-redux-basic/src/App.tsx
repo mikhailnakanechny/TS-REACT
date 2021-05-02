@@ -1,8 +1,8 @@
 import './App.css';
-import {store} from './redux/balance' 
+import { balance, IBalanceAction } from './redux/balance'
 
 //Test array
-const array = [
+const array: IBalanceAction[] = [
   { type: 'UPDATE_BALANCE', payload: 1000.0 },
   { type: 'CREDIT', payload: 200.0 },
   { type: 'CREDIT', payload: 100.0 },
@@ -13,8 +13,7 @@ const array = [
 
 //Test actions dispatching
 array.forEach(action => {
-  // console.log(action)
-  store.dispatch(action)
+  balance.dispatch(action)
 });
 
 function App() {

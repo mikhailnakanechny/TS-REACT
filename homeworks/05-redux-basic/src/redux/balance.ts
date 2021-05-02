@@ -26,4 +26,4 @@ const actionTypeManager = (state: number = 0, action: IBalanceAction) => {
     }
 };
 
-export const store = createStore(actionTypeManager, composeEnhancers());
+export const balance = createStore(actionTypeManager, composeEnhancers());
