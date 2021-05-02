@@ -13,7 +13,7 @@ const array = [
 
 //Test actions dispatching
 array.forEach(action => {
-  console.log(action)
+  // console.log(action)
   store.dispatch(action)
 });
 
